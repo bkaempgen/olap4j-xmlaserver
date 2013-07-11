@@ -3157,9 +3157,45 @@ public class XmlaHandler {
             return false;
         }
 
+        /**
+         * Previously, was not implemented.
+         */
         public int getMeasureAggregator(Member member) {
-            return RowsetDefinition.MdschemaMeasuresRowset
-                .MDMEASURE_AGGR_UNKNOWN;
+        	Measure measure = (Measure) member;
+        	// Watch out: xmlaOrdinal
+        	switch (measure.getAggregator().xmlaOrdinal()) {
+        	case 0:
+                return RowsetDefinition.MdschemaMeasuresRowset
+                        .MDMEASURE_AGGR_UNKNOWN;
+        	case 1:
+                return RowsetDefinition.MdschemaMeasuresRowset
+                        .MDMEASURE_AGGR_SUM;
+        	case 2:
+                return RowsetDefinition.MdschemaMeasuresRowset
+                        .MDMEASURE_AGGR_COUNT;
+        	case 3: 
+                return RowsetDefinition.MdschemaMeasuresRowset
+                        .MDMEASURE_AGGR_MIN;
+        	case 4:
+                return RowsetDefinition.MdschemaMeasuresRowset
+                        .MDMEASURE_AGGR_MAX;
+        	case 5:
+                return RowsetDefinition.MdschemaMeasuresRowset
+                        .MDMEASURE_AGGR_AVG;
+        	case 6:
+                return RowsetDefinition.MdschemaMeasuresRowset
+                        .MDMEASURE_AGGR_VAR;
+        	case 7:
+                return RowsetDefinition.MdschemaMeasuresRowset
+                        .MDMEASURE_AGGR_STD;
+        	case 127:
+                return RowsetDefinition.MdschemaMeasuresRowset
+                        .MDMEASURE_AGGR_CALCULATED;
+            default:
+            	return RowsetDefinition.MdschemaMeasuresRowset
+                        .MDMEASURE_AGGR_UNKNOWN;
+        	}
+
         }
 
         public void checkMemberOrdinal(Member member) throws OlapException {
