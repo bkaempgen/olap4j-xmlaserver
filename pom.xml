@@ -5,8 +5,8 @@
   <!-- The basics. -->
   <groupId>org.olap4j</groupId>
   <artifactId>olap4j-xmlaserver</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <version>TRUNK-SNAPSHOT</version>
+  <packaging>bundle</packaging>
 
   <!-- More project information. -->
   <name>olap4j-xmlaserver</name>
@@ -47,8 +47,8 @@
   <issueManagement/>
 
   <scm>
-    <connection>scm:git:git://github.com/julianhyde/olap4j-xmlaserver.git</connection>
-    <developerConnection>scm:git:git@github.com:julianhyde/olap4j-xmlaserver.git</developerConnection>
+    <connection>scm:git:git://github.com/olap4j/olap4j-xmlaserver.git</connection>
+    <developerConnection>scm:git:git@github.com:olap4j/olap4j-xmlaserver.git</developerConnection>
     <url>http://github.com/olap4j/olap4j-xmlaserver/tree/master</url>
   </scm>
 
@@ -67,7 +67,7 @@
     <dependency>
       <groupId>org.olap4j</groupId>
       <artifactId>olap4j</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.2.0</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -128,6 +128,16 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <excludes/>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Export-Package>mondrian.xmla.impl,mondrian.xmla,org.olap4j.xmla.server.impl</Export-Package>
+          </instructions>
         </configuration>
       </plugin>
     </plugins>
