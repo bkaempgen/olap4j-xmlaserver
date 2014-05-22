@@ -87,6 +87,10 @@ public class XmlaHandler {
             // REVIEW: Security hole?
             sessionId = "<no_session>";
         }
+        
+        System.out.println("Creating new connection for user [" + request.getUsername()
+            + "] and session [" + sessionId + "]");
+        
         LOGGER.debug(
             "Creating new connection for user [" + request.getUsername()
             + "] and session [" + sessionId + "]");

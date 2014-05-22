@@ -269,6 +269,11 @@ public class Olap4jXmlaServlet extends DefaultXmlaServlet {
             BasicDataSource bds;
             synchronized (datasourcesPool) {
                 bds = datasourcesPool.get(dataSourceKey);
+                // Workaround - simply close any bds
+                if (bds != null) {
+                	bds.close();
+                	bds = null;
+                }
                 if (bds == null) {
                     bds = new BasicDataSource();
                     for (Map.Entry entry : connProperties.entrySet()) {
@@ -295,8 +300,9 @@ public class Olap4jXmlaServlet extends DefaultXmlaServlet {
                     datasourcesPool.put(dataSourceKey, bds);
                 }
             }
-
             Connection connection = bds.getConnection();
+            int active = bds.getNumActive();
+            int idle = bds.getNumIdle();
             DelegatingConnection dc = (DelegatingConnection) connection;
             Connection underlyingOlapConnection = dc.getInnermostDelegate();
             OlapConnection olapConnection =
