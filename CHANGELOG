@@ -1,0 +1,32 @@
+==Status 2013-07-07==
+* Problem: Apparently, since cube name pattern (restrictions) is a wildcard, a list of values is stored. Therefore,
+when querying for cubes in xmla-server, I check whether restrictions is a list:
+
+<pre>
+				// Get cube manually
+				Iterable<Cube> cubelist;
+				// We have to consider that with xmla4js, this always is a list.
+				String cubename;
+				if (this.restrictions
+						.get("CUBE_NAME") instanceof List) {
+					List cuberestrictionlist = (List) this.restrictions
+							.get("CUBE_NAME");
+					cubename = cuberestrictionlist.get(0).toString();
+				} else {
+					cubename = this.restrictions
+							.get("CUBE_NAME").toString();
+				}
+				if (cubename != null) {
+					Cube mycube = schema.getCubes().get(
+							cubename);
+					ArrayList<Cube> newlist = new ArrayList<Cube>();
+					newlist.add(mycube);
+					cubelist = newlist;
+				} else {
+					cubelist = filter(sortedCubes(schema), cubeNameCond);
+				}
+</pre>
+
+==Status 2013-07-08==
+* xmla-server would not add proper restrictions to discover requests which would not allow olap4ld
+to know the cube to query. (in RowsetDefinition).
