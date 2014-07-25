@@ -627,7 +627,7 @@ public class XmlaHandler {
         throws XmlaException
     {
         Method method = request.getMethod();
-        long start = System.currentTimeMillis();
+        //long start = System.currentTimeMillis();
 
         switch (method) {
         case DISCOVER:
@@ -644,11 +644,11 @@ public class XmlaHandler {
                 new IllegalArgumentException(
                     "Unsupported XML/A method: " + method));
         }
-        if (LOGGER.isDebugEnabled()) {
-            long end = System.currentTimeMillis();
-            LOGGER.debug("XmlaHandler.process: time = " + (end - start));
-            LOGGER.debug("XmlaHandler.process: " + Util.printMemory());
-        }
+//        if (LOGGER.isDebugEnabled()) {
+//            long end = System.currentTimeMillis();
+//            LOGGER.debug("XmlaHandler.process: time = " + (end - start));
+//            LOGGER.debug("XmlaHandler.process: " + Util.printMemory());
+//        }
     }
 
     private void checkFormat(XmlaRequest request) throws XmlaException {

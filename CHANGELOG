@@ -1,3 +1,25 @@
+==2014-05-22==
+* Habe repository geforkt:
+** git remote add fork https://github.com/bkaempgen/olap4j-xmlaserver.git
+* Anschließend aktuellen Stand überschrieben: 
+** git push -f fork master
+* Version ist: 
+
+<pre>
+commit e444eae9a5eadec7c4d718f757f65c02534b5121
+Author: benedikt <benedikt@b-kaempgen.de>
+Date:   Thu May 22 19:09:45 2014 +0200
+
+    My own version that is working.
+
+commit de093d292118c4b62e596a04e865070fa8772fcc
+Merge: a37547e dad5a17
+</pre>
+
+* Nun möchte ich Updaten auf neueste Version, aber auch wieder zurück kommen können auf meine Version.
+
+
+
 ==Status 2013-07-07==
 * Problem: Apparently, since cube name pattern (restrictions) is a wildcard, a list of values is stored. Therefore,
 when querying for cubes in xmla-server, I check whether restrictions is a list:
